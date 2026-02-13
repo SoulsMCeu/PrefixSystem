@@ -1,0 +1,10 @@
+name: PrefixSystem
+main: eu.soulsmc.prefixsystem.PrefixSystem
+api-version: 1.21
+folia-supported: true
+version: ${project.version}
+softdepend:
+  - LuckPerms
+authors:
+  - Lvcq_
+  - Razuuu
