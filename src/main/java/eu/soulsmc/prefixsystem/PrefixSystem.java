@@ -1,6 +1,8 @@
 package eu.soulsmc.prefixsystem;
 
 import eu.soulsmc.prefixsystem.listeners.ChatListener;
+import eu.soulsmc.prefixsystem.listeners.LuckPermsListener;
+import eu.soulsmc.prefixsystem.listeners.ScoreboardListener;
 import eu.soulsmc.prefixsystem.listeners.TablistListener;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -14,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class PrefixSystem extends JavaPlugin {
 
+    private TablistListener tablistListener;
+    private ScoreboardListener scoreboardListener;
     private LuckPerms luckPerms;
     private LegacyComponentSerializer legacySerializer;
 
@@ -37,6 +41,8 @@ public class PrefixSystem extends JavaPlugin {
         PluginManager pluginManager = this.getServer().getPluginManager();
         pluginManager.registerEvents(new ChatListener(this), this);
         pluginManager.registerEvents(new TablistListener(this), this);
+        pluginManager.registerEvents(new ScoreboardListener(this), this);
+        pluginManager.registerEvents(new LuckPermsListener(this), this);
     }
 
 
@@ -87,5 +93,13 @@ public class PrefixSystem extends JavaPlugin {
         }
 
         return legacySerializer.deserialize(suffix);
+    }
+
+    public TablistListener getTablistListener() {
+        return tablistListener;
+    }
+
+    public ScoreboardListener getScoreboardListener() {
+        return scoreboardListener;
     }
 }
